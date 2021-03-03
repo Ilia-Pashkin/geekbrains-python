@@ -1,14 +1,30 @@
-my_list = input().split()
-l = len(my_list)
-my_list = "\n".join(my_list)
+class Stationery:
+    def __init__(self, title):
+        self.title = title
 
-text_file = open("file05.txt", "w")
-text_file.write(my_list)
-text_file.close()
-text_file = open("file05.txt", "r")
+    def draw(self):
+        print(f"Запуск отрисовки объекта '{self.title}'")
 
-sum = 0
-for line in text_file:
-    sum += int(line)
+class Pen(Stationery):
+    def draw(self):
+        print(f"Начинаю писать {self.title}")
 
-print(f"Сумма чисел в файле: {sum}")
+class Pencil(Stationery):
+    def draw(self):
+        print(f"Начинаю чертить {self.title}")
+
+class Handle(Stationery):
+    def draw(self):
+        print(f"Начинаю рисовать {self.title}")
+
+portrait = Stationery("портрет")
+portrait.draw()
+
+essay = Pen("сочинение")
+essay.draw()
+
+graph = Pencil("график")
+graph.draw()
+
+plan = Handle("план действий")
+plan.draw()

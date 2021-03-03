@@ -1,13 +1,19 @@
-workers = []
-salaries = []
+class Worker:
+    def __init__(self, name, surname, position, _income):
+        self.name = name
+        self.surname = surname
+        self.position = position
+        self._income = {"wage": _income[0], "bonus": _income[1]}
 
-text_file = open("file03.txt", "r").readlines()
-for line in text_file:
-    workers.append(line.split(" - ")[0])
-    salaries.append(line.split(" - ")[1])
+class Position(Worker):
+    def get_full_name(self):
+        return self.name
 
-for i in range(len(salaries)):
-    salaries[i] = int(''.join(salaries[i]))
+    def get_total_income(self):
+        return self._income['wage'] + self._income['bonus']
 
-print(f"Работники, у которых зарплаты ниже 20000: {[workers[i] for i in range(len(workers)) if salaries[i] < 20000]}")
-print(f"Средняя зарплата работников: {round(sum(salaries) / len(salaries), 2)}")
+p1 = Position("Андрей", "Петров", "Senior", [150_000, 30_000])
+
+print(p1.get_full_name())
+print(p1.get_total_income())
+
